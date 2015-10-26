@@ -1,0 +1,12 @@
+Racing
+------------------
+##Build
+`npm run build`
+
+##Test
+`npm test`
+
+##Develop
+`npm start`
+
+Game will start at localhost:3000
