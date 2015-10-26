@@ -1,4 +1,4 @@
-var PowerupIds = require("../../../../common/powerup_ids");
+var PowerupIds = require("../../../common/powerup_ids");
 
 var notificationImageMap = {};
 notificationImageMap[PowerupIds.BOMB_STRENGTH] = "bomb_strength_notification";
@@ -16,7 +16,7 @@ exports.showPowerupNotification = function(powerupId, playerX, playerY) {
 
     var fadeTween = game.add.tween(image);
     fadeTween.to({alpha: 0}, 600, Phaser.Easing.Default, true, 0);
-    
+
     upwardMotionTween.onComplete.addOnce(function(obj) {
       obj.destroy();
     });

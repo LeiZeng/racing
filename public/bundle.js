@@ -52,18 +52,19 @@
 	startGame();
 
 	function startGame() {
-	    socket = io();
+	  socket = io();
 
-		game.state.add("Boot", __webpack_require__(1));
-		game.state.add("Preloader", __webpack_require__(4));
-		game.state.add("Lobby", __webpack_require__(5));
-		game.state.add("StageSelect", __webpack_require__(6));
-		game.state.add("PendingGame", __webpack_require__(7));
-		game.state.add("Level", __webpack_require__(8));
-		game.state.add("GameOver", __webpack_require__(17));
+	  game.state.add("Boot", __webpack_require__(1));
+	  game.state.add("Preloader", __webpack_require__(4));
+	  game.state.add("Lobby", __webpack_require__(5));
+	  game.state.add("StageSelect", __webpack_require__(6));
+	  game.state.add("PendingGame", __webpack_require__(7));
+	  game.state.add("Level", __webpack_require__(8));
+	  game.state.add("GameOver", __webpack_require__(17));
 
-		game.state.start('Boot');
+	  game.state.start('Boot');
 	};
+
 
 /***/ },
 /* 1 */
@@ -835,43 +836,69 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-		BOMB_STRENGTH: 5,
+	  BOMB_STRENGTH: 5,
 
-		BOMB_CAPACITY: 6,
+	  BOMB_CAPACITY: 6,
 
-		SPEED: 7,
+	  SPEED: 7,
 
-		isAPowerup: function(id) {
-			return id === this.BOMB_STRENGTH || id === this.BOMB_CAPACITY || id === this.SPEED;
-		}
+	  isAPowerup: function(id) {
+	    return id === this.BOMB_STRENGTH || id === this.BOMB_CAPACITY || id === this.SPEED;
+	  }
 	};
+
 
 /***/ },
 /* 10 */
 /***/ function(module, exports) {
 
 	var MapInfo = {
-		First: {
-			spawnLocations: [{x: 8, y: 1}, {x: 23, y: 1}, {x: 3, y: 1}, {x: 12, y: 6}],
-			collisionTiles: [3, 4],
-			groundLayer: "Ground",
-			blockLayer: "Blocks",
-			tilesetName: "tiles",
-			tilesetImage: "tiles",
-			destructibleTileId: 4
-		},
-		levelTwo: {
-			spawnLocations: [{x: 2, y: 1}, {x: 13, y: 1}, {x: 2, y: 13}, {x: 13, y: 13}],
-			collisionTiles: [169, 191],
-			groundLayer: "Ground",
-			blockLayer: "Blocks",
-			tilesetName: "tiles",
-			tilesetImage: "tiles",
-			destructibleTileId: 191
-		}
+	  First: {
+	    spawnLocations: [{
+	      x: 8,
+	      y: 1
+	    }, {
+	      x: 23,
+	      y: 1
+	    }, {
+	      x: 3,
+	      y: 1
+	    }, {
+	      x: 12,
+	      y: 6
+	    }],
+	    collisionTiles: [3, 4],
+	    groundLayer: "Ground",
+	    blockLayer: "Blocks",
+	    tilesetName: "tiles",
+	    tilesetImage: "tiles",
+	    destructibleTileId: 4
+	  },
+	  levelTwo: {
+	    spawnLocations: [{
+	      x: 2,
+	      y: 1
+	    }, {
+	      x: 13,
+	      y: 1
+	    }, {
+	      x: 2,
+	      y: 13
+	    }, {
+	      x: 13,
+	      y: 13
+	    }],
+	    collisionTiles: [169, 191],
+	    groundLayer: "Ground",
+	    blockLayer: "Blocks",
+	    tilesetName: "tiles",
+	    tilesetImage: "tiles",
+	    destructibleTileId: 191
+	  }
 	};
 
 	module.exports = MapInfo;
+
 
 /***/ },
 /* 11 */
@@ -1204,6 +1231,7 @@
 
 	module.exports = powerupImageKeys;
 
+
 /***/ },
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
@@ -1226,11 +1254,12 @@
 
 	    var fadeTween = game.add.tween(image);
 	    fadeTween.to({alpha: 0}, 600, Phaser.Easing.Default, true, 0);
-	    
+
 	    upwardMotionTween.onComplete.addOnce(function(obj) {
 	      obj.destroy();
 	    });
 	};
+
 
 /***/ },
 /* 17 */
