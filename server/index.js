@@ -17,6 +17,7 @@ app.get('/', function(req, res) {
 socket = require("socket.io").listen(server);
 
 var games = {};
+games.maxPlayer = 4;
 
 var updateInterval = 200;
 app.use(express.static("client"));
@@ -38,6 +39,27 @@ function setEventHandlers() {
     //   }
     //   game.players[client.id][name] = userName;
     // })
+
+  //mocked data which should be got from login
+    games.players = [
+      { id: 1,
+        name: "xiaoHong",
+        isPlaying: true
+      }, { id: 2,
+        name: "xiaoLan",
+        isPlaying: true
+      }, { id: 3,
+        name: "Lily",
+        isPlaying: true
+      }, { id: 4,
+        name: "Lucy",
+        isPlaying: true
+      }
+    ];
+
+    client.on('start racing', function() {
+      
+    })
   });
 };
 
