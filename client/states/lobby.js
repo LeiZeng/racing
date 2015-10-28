@@ -2,8 +2,8 @@ var Lobby = function() {};
 
 module.exports = Lobby;
 
-var lobby = {};
-lobby.players = [
+window.player = {};
+window.player.players = [
   { id: 1,
     name: "xiaoHong",
     isPlaying: true,
@@ -11,13 +11,18 @@ lobby.players = [
   }, 
   { id: 2,
     name: "xiaoLan",
-    isPlaying: true,
+    isPlaying: false,
     photo: "bomberman_head_red"
   }, 
   { id: 3,
     name: "Lily",
     isPlaying: true,
     photo: "bomberman_head_green"
+  }, 
+  { id: 4,
+    name: "Lucy",
+    isPlaying: false,
+    photo: "bomberman_head_purple"
   }
 ];
 
@@ -35,17 +40,17 @@ Lobby.prototype = {
     thirdLine.height = 125;
     forthLine.height = 125;
 
-    lobby.players.forEach(function(player, index, players){
-      if (index < 4) {
-        
+    var activeIndex = 0;
+    window.player.players.forEach(function(player, index, players){  
+      if (index < 4 && player.isPlaying) {
         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        text = game.add.text(0, 10 + index * 125, player.name, style);
-    
-        game.add.sprite(0, 40 + index * 125, player.photo);       
+        text = game.add.text(0, 10 + activeIndex * 125, player.name, style);
+        game.add.sprite(0, 40 + activeIndex * 125, player.photo);       
+        activeIndex ++;
       };
     });
 
-    socket.on('New player join', function() {
+    socket.on('New player join', function(players) {
 
     });
   },
