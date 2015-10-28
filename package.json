@@ -7,7 +7,7 @@
     "test": "make test",
     "dev": "webpack --progress --colors --watch",
     "build": "webpack",
-    "start": "npm run dev && node server/index"
+    "start": "node server/index & npm run dev"
   },
   "repository": {
     "type": "git",
