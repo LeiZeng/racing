@@ -37,7 +37,11 @@ Lobby.prototype = {
 
     lobby.players.forEach(function(player, index, players){
       if (index < 4) {
-        game.add.sprite(0, 40 + index * 120, player.photo);       
+        
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        text = game.add.text(0, 10 + index * 125, player.name, style);
+    
+        game.add.sprite(0, 40 + index * 125, player.photo);       
       };
     });
 
