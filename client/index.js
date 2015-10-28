@@ -1,4 +1,5 @@
 window.game = new Phaser.Game(875, 525, Phaser.AUTO, 'stage');
+//curent player
 window.player = null;
 window.socket = null;
 window.level = null;
