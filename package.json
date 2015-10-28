@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "make test",
+    "dev": "webpack --progress --colors --watch",
     "build": "webpack",
-    "start": "npm run build && node server/index"
+    "start": "npm run dev && node server/index"
   },
   "repository": {
     "type": "git",
