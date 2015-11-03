@@ -1,6 +1,5 @@
 window.game = new Phaser.Game(875, 525, Phaser.AUTO, 'stage');
-//curent player
-window.player = null;
+window.player = {};
 window.socket = null;
 window.level = null;
 
@@ -13,6 +12,7 @@ function startGame() {
 
   game.state.add("Boot", require("./states/boot"));
   game.state.add("Preloader", require("./states/preloader"));
+  game.state.add("Login", require("./states/login"));
   game.state.add("Lobby", require("./states/lobby"));
   game.state.add("Gaming", require("./states/gaming"));
 

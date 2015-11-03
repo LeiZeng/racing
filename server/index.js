@@ -4,6 +4,7 @@ var express = require("express");
 
 var app = express();
 var server = require("http").Server(app);
+var game = require('../entity/game');
 // var login = require('./login');
 // var lobby = require('./lobby');
 // var gaming = require('./gaming');
@@ -14,12 +15,12 @@ app.get('/', function(req, res) {
   res.sendfile(path.resolve(__dirname, '../index.html'));
 });
 
-socket = require("socket.io").listen(server);
+var io = require("socket.io").listen(server);
 
+var updateInterval = 200;
 var games = {};
 games.maxPlayer = 4;
 
-var updateInterval = 200;
 app.use(express.static("client"));
 server.listen(process.env.PORT || 3000);
 
@@ -31,37 +32,26 @@ function init() {
 };
 
 function setEventHandlers() {
-  socket.sockets.on("connection", function(client) {
-    console.log("New player has connected: " + client.id);
-    // client.on('user login', function (userName) {
-    //   if (!game.players[client.id]) {
-    //     game.players[client.id] = {}
-    //   }
-    //   game.players[client.id][name] = userName;
-    // })
+  io.sockets.on("connection", function(socket) {
+    console.log("New player has connected: " + socket.id);
+    socket.on('disconnect', removePlayer);
+    socket.on('user login', addPlayer);
 
-  //mocked data which should be got from login
-    games.players = [
-      { id: 1,
-        name: "xiaoHong",
-        isPlaying: true
-      }, { id: 2,
-        name: "xiaoLan",
-        isPlaying: true
-      }, { id: 3,
-        name: "Lily",
-        isPlaying: true
-      }, { id: 4,
-        name: "Lucy",
-        isPlaying: true
-      }
-    ];
+    socket.on('start racing', function() {
 
-    client.on('start racing', function() {
-      
     })
   });
 };
+
+function addPlayer(player) {
+  game.addPlayer(player);
+  this.emit('login success', game.getPlayers());
+}
+
+function removePlayer() {
+  game.removePlayer({id: this.id});
+  io.sockets.emit('login out', this.id);
+}
 
 function broadcastingLoop() {
   games.players && games.players
@@ -69,7 +59,7 @@ function broadcastingLoop() {
     return player.alive
   })
   .forEach(function(player) {
-    socket.sockets.in(games.id).emit("player position", {
+    io.sockets.in(games.id).emit("player position", {
       id: player.id,
       x: player.x,
       y: player.y,

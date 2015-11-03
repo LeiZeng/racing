@@ -60,6 +60,6 @@ Preloader.prototype = {
     },
 
     create: function () {
-        game.state.start("Lobby");
+        game.state.start("Login");
     }
 };
